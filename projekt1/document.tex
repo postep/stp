@@ -34,7 +34,20 @@ Korzystając z funkcji \textit{roots} dostajemy:
 \item zera transmitancji dyskretnej: $s_0=0.6990$; $s_1=0.7502$
 \item bieguny transmitancji dyskretnej: $s_{00}=0.5529$; $s_{01}=0.6019$; $s_{02}=1.4922$
 \end{itemize}
-Obiekt jest nie jest stabilny, ponieważ wszyskie bieguny transmitancji ciągłej nie znajdują się w lewej półpłaszczyźnie, co jest warunkiem stabilności asymptotycznej. Dla transmitancji dyskretnej obiekt nie jest stabilny, bo wszystkie nie wszyskie bieguny mają wartość bezwzględną mniejszą od 1, co jest warunkiem stabilności asymptotycznej.
+Obiekt jest nie jest stabilny, ponieważ wszystkie bieguny transmitancji ciągłej (rys. \ref{fig:gs}) nie znajdują się w lewej półpłaszczyźnie, co jest warunkiem stabilności asymptotycznej. Dla transmitancji dyskretnej obiekt nie jest stabilny, bo nie wszystkie bieguny (rys. \ref{fig:gz}) mają wartość bezwzględną mniejszą od 1, co jest warunkiem stabilności asymptotycznej.
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{zad1/G_s}
+\caption{Zera i bieguny transmitancji ciągłej}
+\label{fig:gs}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{zad1/G_z}
+\caption{Zera i bieguny transmitancji dyskretnej}
+\label{fig:gz}
+\end{figure}
+
 \section{Zadanie 2}
 \subsection{Pierwszy wariant metody bezpośredniej}
 Licznik oraz mianownik wyliczonej wcześniej transmitancji dyskretnej mnożymy przez $z^{-3}$ otrzymując:
@@ -57,7 +70,7 @@ Otrzymujemy reprezentację macierzową, oraz reprezentację graficzną (rysunek 
 \[D_1 = 0\]
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\linewidth]{wariant1}
+\includegraphics[width=0.8\linewidth]{zad2/wariant1}
 \caption{Reprezentacja modelu dyskretnego, w wariancie pierwszym metody bezpośredniej}
 \label{fig:wariant1}
 \end{figure}
@@ -77,15 +90,79 @@ otrzymujemy reprezentację macierzową i reprezentację graficzną (rysunek \ref
 \[D_2 = 0\]
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\linewidth]{wariant2}
+\includegraphics[width=0.8\linewidth]{zad2/wariant2}
 \caption{Reprezentacja modelu dyskretnego, w wariancie drugim metody bezpośredniej}
 \label{fig:wariant2}
 \end{figure}
 \section{Zadanie 3}
-Wyznaczamy wektor sprzężeń zwrotnych K. Rozwiązujemy równianie charakterystyczne:
-\[|zI -(A-BK) = (z-z_1)(z-z_2)(z-z_3)|\]
+Wyznaczamy wektor sprzężeń zwrotnych K. Rozwiązujemy równianie charakterystyczne i sprowadzamy do postaci:
+\[det(zI -(A-BK)) = (z-z_1)(z-z_2)(z-z_3)\]
 Do wyliczania wektorów K zastosowano funkcję \textit{acker()}.
-Układ wykorzystany w zadaniu przedstawia rysunek
+Układ wykorzystany w zadaniu przedstawia rysunek \ref{fig:graficzny}. Wykres zmian różnicy sygnału sterowania przedstawia rysunek \ref{fig:wykres}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{zad3/graficzny}
+\caption{Reprezentacja graficzna układu}
+\label{fig:graficzny}
+\end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{zad3/wykres_zad3}
+\caption{Wykres zmian sterowania}
+\label{fig:wykres}
+\end{figure}
+Najlepszy układ regulacji uzyskano dla biegunów \[z_1=0.1, z_2=0.1, z_3=0.1\]. 
 \subsection{Wyliczanie wektora K dla równych biegunów}
+Na rys. \ref{fig:z1-2z2-2z3-2} bieguny z poza układu jednostkowego, brak regulacji. Na rys. \ref{fig:z107z207z307} układ reguluje się, lecz znacząco wolniej niż układ na rys. \ref{fig:z101z201z301} i widoczne przeregulowanie. Na rys. \ref{fig:z1-05z2-05z3-05} układ reguluje się, lecz widać zjawisko biegunów dzwoniących.
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{zad3/z1=-2z2=-2z3=-2}
+\caption{Bieguny z1=-2, z2=-2, z3=-2}
+\label{fig:z1-2z2-2z3-2}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{{{zad3/z1=0.1z2=0.1z3=0.1}}}
+\caption{Bieguny z1=0.1, z2=0.1, z3=0.1}
+\label{fig:z101z201z301}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{{{zad3/z1=0.4z2=0.4z3=0.4}}}
+	\caption{Bieguny z1=0.4, z2=0.4, z3=0.4}
+	\label{fig:z104z204z304}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{{{zad3/z1=0.7z2=0.7z3=0.7}}}
+	\caption{Bieguny z1=0.7, z2=0.7, z3=0.7}
+	\label{fig:z107z207z307}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{{{zad3/z1=-0.5z2=-0.5z3=-0.5}}}
+	\caption{Bieguny z1=-0.5, z2=-0.5, z3=-0.5}
+	\label{fig:z1-05z2-05z3-05}
+\end{figure}
+
+\subsection{Wyliczanie wektora K dla bieguna dominującego}
+Widać, że im bliżej bieguny znajdują się bieguna dominującego, tym szybsza regulacja, ale też większe przeregulowanie.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{{{zad3/z1=0.1z2=0.4z3=0.4}}}
+	\caption{Bieguny z1=0.1, z2=0.4, z3=0.4}
+	\label{fig:z101z204z304}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{{{zad3/z1=0.1z2=0.7z3=0.7}}}
+	\caption{Bieguny z1=0.1, z2=0.7, z3=0.7}
+	\label{fig:z101z207z307}
+\end{figure}
 
 \end{document}
