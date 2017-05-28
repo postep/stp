@@ -1,11 +1,16 @@
-clear all;
+function zadanie_5()
+    figure;
+    hold on;
+    for i=[1, 2, 3, 5, 10, 20, 30, 40, 50, 60]
+        [Y_sim, T_sim, U_sim] = dmc(1, 100, 60, 60, i, 1);
+        stairs(T_sim, U_sim);
+    end
+    hold off;
+    print('-dpng', '../images/z5_c.png');
+end
+
+function [Y_sim, T_sim, U_sim]=dmc(y_step, T_sim, D, N, Nu, l)
 %%REGULATOR DMC
-y_step=1;        %skok
-T_sim=100;       %czas symulacji
-D=60;           %horyzont dynamiki
-N=D;           %horyzont predykcji
-Nu=10;          %horyzont sterowania
-l=30;           %wsp kary
 
 y_k_1 = 1.725;           %y(k-1)
 y_k_2 = -0.7414;         %y(k-2)
@@ -67,24 +72,8 @@ for i=1:T_sim
    Y(i) = yk;
 end
 
-figure;
-subplot(211);
-plot(Y, 'b');
-hold on;
-stairs(0:T_sim, [0 y_step*ones(1,T_sim)], 'c:');
-ylabel('y, yzad');
-xlabel('Tp');
-ylim([0 y_step*2]);
-hold off;
-
-subplot(212);
-hold on;
-stairs(0:T_sim, [0 U], 'm');
-xlabel('Tp');
-ylabel('u');
-ylim([0 y_step*2]);
-xlim([0 T_sim]);
-hold off;
-title = ['../images/z5_', num2str(D), '_', num2str(N), '_', num2str(Nu), '_', num2str(l), '.png'];
-print('-dpng', title);
-disp(title);
+Y_sim = [0 y_step*ones(1,T_sim)];
+disp(Y_sim);
+U_sim = [0 U];
+T_sim = 0:T_sim;
+end

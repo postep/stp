@@ -1,11 +1,11 @@
 clear all;
 %%REGULATOR DMC
-y_zad=1;        %skok
+y_step=1;        %skok
 T_sim=100;       %czas symulacji
-Nu=3;          %horyzont sterowania
-D=50;           %horyzont dynamiki
-N=50;           %horyzont predykcji
-l=10;           %wsp kary
+D=60;           %horyzont dynamiki
+N=D;           %horyzont predykcji
+Nu=10;          %horyzont sterowania
+l=100;           %wsp kary
 
 y_k_1 = 1.725;           %y(k-1)
 y_k_2 = -0.7414;         %y(k-2)
@@ -59,7 +59,7 @@ for i=1:T_sim
        yk=y_k_1*Y(i-1)+y_k_2*Y(i-2)+u_k_11*U(i-11)+u_k_12*U(i-12);
    end
    
-   du = K(1,:)*(y_zad*ones(N,1) - yk*ones(N,1) - Mp*du_hist);
+   du = K(1,:)*(y_step*ones(N,1) - yk*ones(N,1) - Mp*du_hist);
    du_hist = [du; du_hist(1:end-1)];
    uk = uk + du_hist(1);
    
@@ -71,10 +71,10 @@ figure;
 subplot(211);
 plot(Y, 'b');
 hold on;
-stairs(0:T_sim, [0 y_zad*ones(1,T_sim)], 'c:');
+stairs(0:T_sim, [0 y_step*ones(1,T_sim)], 'c:');
 ylabel('y, yzad');
 xlabel('Tp');
-ylim([0 y_zad*2]);
+ylim([0 y_step*2]);
 hold off;
 
 subplot(212);
@@ -82,7 +82,9 @@ hold on;
 stairs(0:T_sim, [0 U], 'm');
 xlabel('Tp');
 ylabel('u');
-ylim([0 y_zad*2]);
+ylim([0 y_step*2]);
 xlim([0 T_sim]);
 hold off;
-print('-dpng', '../images/z4.png');
+title = ['../images/z5_', num2str(D), '_', num2str(N), '_', num2str(Nu), '_', num2str(l), '.png'];
+print('-dpng', title);
+disp(title);
