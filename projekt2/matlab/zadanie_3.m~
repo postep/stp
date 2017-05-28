@@ -1,0 +1,20 @@
+Kk = 0.817;
+%Kr = Kk; Ti=10000000; Td = 0; 
+Tk = 21;
+Kr = 0.6*Kk; Ti = 0.5*Tk; Td = 0.12*Tk;
+
+K0 = 2.9;
+T0 = 5;
+T1 = 2.4;
+T2 = 5.5;
+Tp = 0.5;
+s = tf('s');
+Gs = K0*exp(-T0*s)/((T1*s+1)*(T2*s+1));
+R = Kr+(1/(Ti*s))+Td*s;
+
+Gu = feedback(Gs*R, 1);
+step(Gu, 150);
+%xlim([0 80])
+%ylim([-0.5 2])
+%dostrojone recznie:
+%(0.18, 0.021, 0.3)
