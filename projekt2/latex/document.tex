@@ -108,7 +108,7 @@
 	\end{figure}
 	
 	\section{Dobór parametrów algorytmu DMC}
-	\subsection{Podpunkt a)}
+	\subsection{Horyzont dynamiki}
 	Sygnał odpowiedzi skokowej stabilizuje się po 50 s. Dlatego $D = 50/T_p = 100$. Założono $\lambda = 1$. Symulację przedstawia rysunek \ref{fig:z5_100_100_100_1}. 
 	\begin{figure}
 		\centering
@@ -116,7 +116,7 @@
 		\caption{Symulacja DMC dla parametrów $N=Nu=D=100, \lambda = 1$}
 		\label{fig:z5_100_100_100_1}
 	\end{figure}
-	\subsection{podpunkt b)}
+	\subsection{Horyzont predykcji}
 	Wybrano $N=60$ ponieważ jest to najmniejsza z wartości, dla których algorytm nie zachowywał się gorzej, niż w przypadku z podpunktu a). Symulację przedstawia rysunek 
 	\begin{figure}
 		\centering
@@ -124,7 +124,7 @@
 		\caption{Symulacja DMC dla parametrów $N=Nu=60, \lambda = 1$}
 		\label{fig:z5_60_60_60_1}
 	\end{figure}
-	\subsection{podpunkt c)}
+	\subsection{Horyzont sterowania}
 	Przeprowadzono szereg symulacji zaprezentowanych na rysunkach \ref{fig:z5_60_60_1_1}, \ref{fig:z5_60_60_2_1}, \ref{fig:z5_60_60_3_1}, \ref{fig:z5_60_60_4_1}, \ref{fig:z5_60_60_5_1}, \ref{fig:z5_60_60_10_1}, \ref{fig:z5_60_60_20_1}, \ref{fig:z5_60_60_30_1}, \ref{fig:z5_60_60_40_1}, \ref{fig:z5_60_60_50_1} i 
 	\ref{fig:z5_60_60_60_1}. Okazuje się, że dla $N_u > 10 $ symulacja zachowuje się dość podobnie. Ze wzrostem parametru zwiększają się oscylacje. Nie ma więc sensu stosowanie większych horyzontów sterowania. Dla parametru $N_u = 1$ nie występuje przeregulowanie, co w niektórych zastosowaniach może być dużą zaletą.
 	Według autora najlepszym kompromisem pomiędzy szybkością regulacji, maksymalną różnicą skoków sterowania, przeregulowaniem oraz złożonością algorytmu jest $N_u = 10$.
@@ -182,7 +182,7 @@
 \label{fig:z5_60_60_50_1}
 \end{figure}
 
-\subsection{podpunkt d)}
+\subsection{Współczynnik $\lambda$}
 Przeprowadzono symulacje zaprezentowane na rysunkach \ref{fig:z5_60_60_10_1}, \ref{fig:z5_60_60_10_5}, \ref{fig:z5_60_60_10_10}, \ref{fig:z5_60_60_10_20}, \ref{fig:z5_60_60_10_40} i \ref{fig:z5_60_60_10_60}. Według autora nalepszym kompromisem pomiędzy postacią sygnału wyjściowego i szybkością jest $\lambda = 5$. 
 \begin{figure}
 	\centering
