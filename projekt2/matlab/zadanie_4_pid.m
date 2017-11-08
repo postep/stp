@@ -17,4 +17,4 @@ Gz = c2d(Gs, Tp, 'zoh');
 z = tf('z');
 Rz = (r2*z^(-2)+r1*z^(-1)+r0)/(1-z^(-1));
 Guz = feedback(Rz*Gz,1);
-[Y, T] = step(Guz, 150);
+step(Guz, 150);

@@ -1,8 +1,9 @@
+
 clear all;
 %%REGULATOR DMC
 y_step=1;        %skok
 T_sim=100;       %czas symulacji
-D=60;           %horyzont dynamiki
+D=80;           %horyzont dynamiki
 N=D;           %horyzont predykcji
 Nu=10;          %horyzont sterowania
 l=100;           %wsp kary
@@ -12,12 +13,14 @@ y_k_2 = -0.7414;         %y(k-2)
 u_k_11 = 0.0249;         %u(k-11)
 u_k_12 = 0.0225;         %u(k-12)
 
-y = zeros(N, 1);
-u = ones(N, 1);
+y = zeros(N+1, 1);
+u = ones(N+1, 1);
 y(12)=y_k_1*y(11) + y_k_2*y(10) + u_k_11;
-for k=13:N
+for k=13:N+1
    y(k)=y_k_1*y(k-1) + y_k_2*y(k-2) + u_k_11*u(k-11) + u_k_12*u(k-12);
 end
+
+y = y(2:N+1);
 
 yk=0; 
 uk=0; 

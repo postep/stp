@@ -8,12 +8,13 @@ function zadanie_6()
             stabilny = stabilnosc_pid(transmitancja(K_pid(i), i/10.0));
         end;
     end    
-    for i = 1:1:11
+    for i = 3:1:3
         display(['DMC', num2str(i)]);
         stabilny = true;
-        while(stabilny & K_dmc<300)
-            K_dmc(i) = K_dmc(i)+1;
-            stabilny = stabilnosc_dmc(transmitancja(K_dmc(i), i/10.0));
+        while(stabilny & K_dmc(i) < 100)
+            K_dmc(i) = K_dmc(i)+0.1;
+            t = transmitancja(K_dmc(i), i/10.0);
+            stabilny = stabilnosc_dmc(t);
         end;
     end
     display(K_pid);
@@ -47,9 +48,7 @@ function ret = stabilnosc_dmc(Gz)
     end
 end
 
-function [Y_sim, T_sim]=dmc(Gz)
-%%REGULATOR DMC
-
+function [Y, T]=dmc(Gz)
 y_step = 1;
 T_sim = 400*2;
 D = 60;
@@ -59,7 +58,6 @@ l = 5;
 denominator = Gz.Denominator{1};
 numerator = Gz.Numerator{1};
 delay = Gz.OutputDelay;
-display(delay);
 y_k_1 = -denominator(2); %1.725;           %y(k-1)
 y_k_2 = -denominator(3); %-0.7414;         %y(k-2)
 u_k_11 = numerator(2); %0.0249;         %u(k-11)
@@ -99,7 +97,6 @@ end;
 
 I=eye(Nu);
 K=((M'*M+l*I)^(-1))*M';
-
 U = zeros(1, T_sim);
 Y = zeros(1, T_sim);
 
@@ -120,8 +117,9 @@ for i=1:T_sim
    Y(i) = yk;
 end
 
-Y_sim = [0 y_step*ones(1, T_sim)];
-T_sim = 0:T_sim;
+Y = [0 y_step*ones(1, T_sim)];
+disp(Y);
+T = 0:T_sim;
 end
 
 function [Y, T] = pid(Gz)
@@ -139,6 +137,6 @@ function [Y, T] = pid(Gz)
     z = tf('z');
     Rz = (r2*z^(-2)+r1*z^(-1)+r0)/(1-z^(-1));
     Guz = feedback(Rz*Gz, 1);
-    [Y, T] = step(Guz, 400);
+    [Y, T] = step(Guz, 150);
 end
     
