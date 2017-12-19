@@ -9,11 +9,7 @@ roots(numerator)
 roots(denominator)
 
 %wyznacznie modelu w przestrzeni stanow, wariant 1
-
-A = [-3 34 120; 1 0 0; 0 1 0]
-B = [1; 0; 0]
-C = [1 4 1.75]
-D = 0
+[A, B, C, D] = tf2ss(numerator, denominator)
 
 %sprawdzenie czy transmitancja taka jak poczatkowa
 [l,m]=ss2tf(A,B,C,D)
