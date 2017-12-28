@@ -23,11 +23,19 @@
 \begin{document}
 	\maketitle
 	\section{Wyznaczanie modeli rekurencyjnych}
-	Dla podanych danych wyznaczono modele rekurencyjne (tab. \ref{tab:z1}). Wybrano najlepszy model dla $\tau=6$. Na początku przebiegu modele wykazują mniejszy błąd wyjścia. \\
+	Dla podanych danych wyznaczono modele rekurencyjne (tab. \ref{tab:z1}). Na początku przebiegu modele wykazują mniejszy błąd wyjścia. Wizualne obserwacje wyjść modeli potwierdzdają obliczenia błędu. \\
+	Wybrano najlepszy model dla $\tau=6$. \\
+	Dla najlepszego modelu: $b_6 = -0.1854$, $b_7=-0.918$, $a_1=-1.0403$, $a_2=0.1135$.\\
+	Mamy:
+	\[y(k)+a_1y(k-1) + a_2y(k-2)=b_6u(k-6)+b_7u(k-7)\]
+	Po zastosowaniu transformaty $Z$:
+	\[(1+a_1z^{-1} + a_2z^{-2})Y(z)=(b_6z^{-6}+b_7z^{-7})U(z)\]
+	Więc transmitancja:
+	\[G(z)=\frac{Y(z)}{U(z)}=\frac{b_6z^{-6}+b_7z^{-7}}{1+a_1z^{-1} + a_2z^{-2}}=\frac{-0.1854z^{-6}-0.918z^{-7}}{1-1.0403z^{-1} + 0.1135z^{-2}}\]
 	\begin{table}[H]
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 	\hline 
-	$\tau$ & $b_\tau$ & $b_{\tau-1}$ & $-a_1$ & $-a_2$ & $E$ & rys. \\ 
+	$\tau$ & $b_\tau$ & $b_{\tau+1}$ & $-a_1$ & $-a_2$ & $E$ & rys. \\ 
 	\hline 
 	 1 & -0.0082 & -0.0679 &  1.6619 & -0.6799
 	  & 79.2282 & \\ 
@@ -102,5 +110,14 @@
 	\label{fig:z1_8}
 	\end{figure}
 
-
+	\section{Odpowiedz skokowa}
+	Obliczono ze wzoru odpowiedz skokową (rys. \ref{fig:z2}).\\
+	Wzmocnienie statyczne:
+	\[K_{stat}=\lim_{z\rightarrow 1}G(z)=-3.7848\]
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\linewidth]{z2}
+		\caption{Odpowiedz skokowa modelu}
+		\label{fig:z2}
+		\end{figure}
 \end{document}
