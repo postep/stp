@@ -1,10 +1,11 @@
-%%odpowiedz skokowa
-kon = 80;
+%% odpowiedz skokowa
+kon = 400;
 y_mod_step = zeros(kon, 1);
 for i = 8:kon
     y_mod_step(i) = W_kon(1)*1 + W_kon(2)*1 + W_kon(3)*y_mod_step(i-1) + W_kon(4)*y_mod_step(i-2);
 end
 
+%% drukowanie
 clf;
 hold on;
 plot(y_mod_step);
