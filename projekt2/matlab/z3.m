@@ -2,7 +2,7 @@
 Kk = -0.985;
 Tk = 23;
 Kr = 0.6*Kk; Ti = 0.5*Tk; Td = 0.12*Tk;
-Kr = -0; Ti = 100000; Td = 0.0003;
+Kr = -0.99; Ti = 0.5*Tk; Td = 0.12*Tk;
 disp(Kr);
 disp(Ti);
 disp(Td);
@@ -22,5 +22,5 @@ hold on;
 plot(step(G, 200));
 xlabel('t');
 legend('y_{step}');
-print('-dpng', '../images/z3_r.png');
+print('-dpng', '../images/z3_p.png');
 hold off;

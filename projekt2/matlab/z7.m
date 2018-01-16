@@ -5,6 +5,9 @@ Nu=6; %horyzont sterowania
 l=3; %wsp kary
 y_zad=5;
 T_sim=80;
+max_dU = 2;
+max_U = 10;
+min_U = -3;
 
 S = y_mod_step(1:300);
 
@@ -37,6 +40,17 @@ for k = 7:T_sim-1
     Y_0 = Y_k + M_p*dU_prev;
     dU = K*(Y_zad-Y_0);
     U(k+1) = dU(1) + U(k);
+    %ograniczenie przyrostu
+    if dU(1) < -max_dU
+        dU(1) = -max_dU;
+    end
+    if dU(1) > max_dU
+        dU(1) = max_dU;
+    end
+    %ograniczenie sygnalu
+    U(k+1) = max(U(k+1), min_U);
+    U(k+1) = min(U(k+1), max_U);
+    
     Y(k+1) = W_kon(1)*U(k-5) + W_kon(2)*U(k-6) + W_kon(3)*Y(k) + W_kon(4)*Y(k-1);
     dU_prev = [dU(1); dU_prev(1:end-1)];
 end
@@ -62,7 +76,7 @@ hold on;
 plot(Y);
 zad = y_zad*ones(T_sim, 1);
 zad(1:7) = [0 0 0 0 0 0 0];
-plot(y_zad*ones(T_sim), '--');
+plot(zad, '--');
 hold off;
 legend('Y', 'Y_z_a_d', 'Location', 'southeast');
 xlabel('t');
@@ -93,6 +107,6 @@ legend('J_u', 'Location','northeast');
 hold off;
 
 
-t = ['../images/z4_', num2str(D), '_', num2str(N), '_', num2str(Nu), '_', num2str(l), '.png'];
+t = ['../images/z7_', num2str(max_dU), '_', num2str(min_U), '_', num2str(max_U), '.png'];
 print('-dpng', t);
 disp(t);

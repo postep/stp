@@ -194,7 +194,7 @@
 				
 				
 	\subsection{Testowanie odporności}
-	Przyjęto w/w przyjęte parametry regulacji. Co oczywiste, im bardziej zmienimy inercję modelu tym trudniej będzie go wyregulować. Dla zmniejszonego czasu odpowiedzi występują oscylacje wejścia i wyjścia modelu (rys. \ref{fig:z6_1}, rys.\ref{fig:z6_3}, rys.\ref{fig:z6_5}). Dla zwiększonego czasu odpowiedzi występują oscylację sygnału wejściowego i pogorszenie regulacji (rys. \ref{fig:z6_-1}, \ref{fig:z6_-3}, \ref{fig:z6_-10}). Dla opóźnień oraz małych przyspieszeń inercji obiektu udaje się uzyskać regulację.
+	Przyjęto w/w przyjęte parametry regulacji. Dla zmniejszonego czasu odpowiedzi występują oscylacje wejścia i wyjścia modelu (rys. \ref{fig:z6_1}, rys.\ref{fig:z6_3}, rys.\ref{fig:z6_5}). Dla zwiększonego czasu odpowiedzi występują oscylację sygnału wejściowego i pogorszenie regulacji (rys. \ref{fig:z6_-1}, \ref{fig:z6_-3}, \ref{fig:z6_-10}). Dla opóźnień oraz małych przyspieszeń inercji obiektu udaje się uzyskać regulację.
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{z6_1}
@@ -236,5 +236,40 @@
 			\caption{Testowanie odporności dla  $y(k) = b_6u(k-16)+b_7u(k-17)-a_1y(k-1)-a_2y(k-2)$.}
 			\label{fig:z6_-10}
 			\end{figure}
-			
+	
+	\subsection{Ograniczenia wartości i zmiany sygnału sterującego}
+	Dla wyżej przyjętych optymalnych parametrów regulacji:
+	\begin{itemize}
+	\item Dla ograniczeń wyłączenie wartości nie zawsze udaje się osiągnąć regulację (np. rys. \ref{fig:z7_200_-1_1}) lub regulacja jest wolniejsza (np. rys. \ref{fig:z7_200_-2_0}). Może nastąpić zmniejszenie wydatku energetycznego. $J_u$. Zmniejszenie stabilności.
+	
+	\item Dla ograniczeń wyłącznie zmiany synału sterującego większe przeregulowanie (np. rys. \ref{fig:z7_1_-1000_100}). W skrajnych przypadkach brak regulacji, oscylacje wejścia i wyjścia (np. rys. \ref{fig:z7_01_-1000_100}). Zmniejszenie szybkości regulacji i reagowania na zmiany. 
+	
+	\item  Najlepszy przebieg otrzymujemy bez wprowadzania ograniczeń (rys. \ref{fig:z4_4}).
+	\end{itemize}
+	
+	\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\linewidth]{z7_200_-1_1}
+				\caption{Ogranicznenie  $-1<u(k)<1$}
+				\label{fig:z7_200_-1_1}
+				\end{figure}
+	\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\linewidth]{z7_200_-2_0}
+				\caption{Ograniczenie $-2<u(k)<0$}
+				\label{fig:z7_200_-2_0}
+				\end{figure}
+	
+	\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.9\linewidth]{z7_1_-1000_100}
+					\caption{Ograniczenie $\Delta u < 1$}
+					\label{fig:z7_1_-1000_100}
+					\end{figure}
+	\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\linewidth]{z7_01_-1000_100}
+				\caption{Ogranicznenie  $\Delta u < 0.1$}
+				\label{fig:z7_01_-1000_100}
+				\end{figure}	
 \end{document}
