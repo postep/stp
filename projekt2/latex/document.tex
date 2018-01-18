@@ -11,21 +11,25 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{geometry}
-
+\usepackage{titlesec}
 \usepackage{float}
 
 
 \author{Jakub Postępski}
 \title{STP - Projekt 2.24}
+
 \graphicspath{{../images/}}
+
 \newgeometry{tmargin=3cm, bmargin=0.5cm, lmargin=0.5cm, rmargin=0.5cm}
+
+\newcommand{\sectionbreak}{\clearpage}
 
 \begin{document}
 	\maketitle
 	Kolejne pliki z katalogu \textit{matlab} odpowiadają zadaniom w kolejnych podsekcjach sprawozdania.
 	\section{Wyznaczanie modeli rekurencyjnych}
-	Dla podanych danych wyznaczono modele rekurencyjne (tab. \ref{tab:z1}). Na początku przebiegu modele wykazują mniejszy błąd wyjścia. Wizualne obserwacje wyjść modeli potwierdzdają obliczenia błędu. \\
-	Wybrano najlepszy model dla $\tau=6$. \\
+	Dla podanych danych wyznaczono modele rekurencyjne (tab. \ref{tab:z1}).\\
+	Wybrano najlepszy model dla $\tau=6$ (rys. \ref{fig:z1_6}). \\
 	Dla najlepszego modelu: $b_6 = -0.1854$, $b_7=-0.918$, $a_1=-1.0403$, $a_2=0.1135$.\\
 	Mamy:
 	\[y(k)+a_1y(k-1) + a_2y(k-2)=b_6u(k-6)+b_7u(k-7)\]
@@ -37,26 +41,27 @@
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 	\hline 
-	$\tau$ & $b_\tau$ & $b_{\tau+1}$ & $-a_1$ & $-a_2$ & $E$ & rys. \\ 
+	$\tau$ & $b_\tau$ & $b_{\tau+1}$ & $-a_1$ & $-a_2$ & $E$  \\ 
 	\hline 
 	 1 & -0.0082 & -0.0679 &  1.6619 & -0.6799
-	  & 79.2282 & \ref{fig:z1_1}\\ 
+	  & 79.2282 \\ 
 	\hline 
 	2 & 0.0027 & -0.1003
-	  &  1.5901 & -0.6135 & 54.2224 & \ref{fig:z1_2}\\ 
-	\hline 3 & -0.0014 & -0.1337 &  1.4685  & -0.5010 & 39.9572 & \ref{fig:z1_3}\\ 
+	  &  1.5901 & -0.6135 & 54.2224 \\ 
+	\hline 
+	3 & -0.0014 & -0.1337 &  1.4685  & -0.5010 & 39.9572\\ 
 	\hline 
 	4 & -0.0568 & -0.1271 & 1.3107 & -0.3552
-	  & 32.3080  & \ref{fig:z1_4}\\ 
+	  & 32.3080  \\ 
 	\hline 
- 5 & -0.1188 & -0.1281 & 1.1146 &  -0.1763 & 20.9694 & \ref{fig:z1_5} \\ 
+ 5 & -0.1188 & -0.1281 & 1.1146 &  -0.1763 & 20.9694 \\ 
 	\hline 
-	6 & -0.1854  &  -0.0918 &  1.0403  & -0.1135 & 16.3988 &\ref{fig:z1_6} \\ 
+	6 & -0.1854  &  -0.0918 &  1.0403  & -0.1135 & 16.3988 \\ 
 	\hline 
 	7 & -0.1575 & -0.0517  & 1.2836 & -0.3445  & 46.8691
-	&\ref{fig:z1_7} \\ 
+	\\ 
 	\hline
-	8 & -0.1146 & 0.0001  & 1.5764 & -0.6144 & 176.8823 & \ref{fig:z1_8} \\ 
+	8 & -0.1146 & 0.0001  & 1.5764 & -0.6144 & 176.8823 \\ 
 	\hline 
 	\end{tabular}
 	\label{tab:z1}
@@ -65,51 +70,9 @@
 	
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{z1_1}
-	\caption{Wyjścia modelu dla $\tau=1$}
-	\label{fig:z1_1}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_2}
-	\caption{Wyjścia modelu dla $\tau=2$}
-	\label{fig:z1_2}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_3}
-	\caption{Wyjścia modelu dla $\tau=3$}
-	\label{fig:z1_3}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_4}
-	\caption{Wyjścia modelu dla $\tau=4$}
-	\label{fig:z1_4}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_5}
-	\caption{Wyjścia modelu dla $\tau=5$}
-	\label{fig:z1_5}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
 	\includegraphics[width=0.9\linewidth]{z1_6}
 	\caption{Wyjścia modelu dla $\tau=6$}
 	\label{fig:z1_6}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_7}
-	\caption{Wyjścia modelu dla $\tau=7$}
-	\label{fig:z1_7}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{z1_8}
-	\caption{Wyjścia modelu dla $\tau=8$}
-	\label{fig:z1_8}
 	\end{figure}
 
 	\section{Odpowiedz skokowa}
@@ -122,21 +85,29 @@
 		\caption{Odpowiedz skokowa modelu}
 		\label{fig:z2}
 		\end{figure}
-		
+
 	\section{Regulator PID}
 	Dla regulatora postaci:
 	\[G_r(z)=\frac{u(k)}{e(k)} = \frac{r_2z^{-2}+r_1z^{-1}+r_0}{1-z^{-1}}\]
 	Mamy:
-	\[r_2=K\frac{T_d}{T}\]
-	\[r_1=K(\frac{T}{2T_i}-2\frac{T_d}{T}-1)\]
 	\[r_0=K(1+\frac{T}{2T_i}+\frac{T_d}{T})\]
+	\[r_1=K(\frac{T}{2T_i}-2\frac{T_d}{T}-1)\]
+	\[r_2=K\frac{T_d}{T}\]
 	
-	Zgodnie z eksperymentem Zieglera-Nicholsa:
-	\[K_k = \]
-	\[T_k = \]
-	\[K = 0.6K_k = \]
-	\[T_i = 0.5T_k = \]
-	\[T_d = 0.12T_k = \]
+	Gdzie $T=0.1$ oznacza okres próbkowania.
+	
+	Brak regulacji metodą Zieglera-Nicholsa. Dobrano nastawy (rys. ref{fig:z3}:
+	\[K = -0.1\]
+	\[T_i = -0.4\]
+	\[T_d = -0.05\]
+	
+		
+	\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{z3}
+			\caption{Symulacja regulatora PID}
+			\label{fig:z3}
+			\end{figure}
 	
 	\section{Regulator DMC}
 	\subsection{Strojenie nastawów}
