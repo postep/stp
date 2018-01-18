@@ -18,20 +18,18 @@
 \author{Jakub Postępski}
 \title{STP - Projekt 2.24}
 
-\graphicspath{{../images/}}
 
 \newgeometry{tmargin=3cm, bmargin=0.5cm, lmargin=0.5cm, rmargin=0.5cm}
 
 \newcommand{\sectionbreak}{\clearpage}
-
+\graphicspath{{../images/}}
 \begin{document}
 	\maketitle
 	Kolejne pliki z katalogu \textit{matlab} odpowiadają zadaniom w kolejnych podsekcjach sprawozdania.
 	\section{Wyznaczanie modeli rekurencyjnych}
 	Dla podanych danych wyznaczono modele rekurencyjne (tab. \ref{tab:z1}).\\
-	Wybrano najlepszy model dla $\tau=6$ (rys. \ref{fig:z1_6}). \\
-	Dla najlepszego modelu: $b_6 = -0.1854$, $b_7=-0.918$, $a_1=-1.0403$, $a_2=0.1135$.\\
-	Mamy:
+	Wybrano najlepszy model dla $\tau=6$ (rys. \ref{fig:z1_6}). 	Współczynniki: $b_6 = -0.1854$, $b_7=-0.918$, $a_1=-1.0403$, $a_2=0.1135$.
+	Dlatego:
 	\[y(k)+a_1y(k-1) + a_2y(k-2)=b_6u(k-6)+b_7u(k-7)\]
 	Po zastosowaniu transformaty $Z$:
 	\[(1+a_1z^{-1} + a_2z^{-2})Y(z)=(b_6z^{-6}+b_7z^{-7})U(z)\]
@@ -76,7 +74,7 @@
 	\end{figure}
 
 	\section{Odpowiedz skokowa}
-	Obliczono ze wzoru odpowiedz skokową (rys. \ref{fig:z2}).\\
+	Wykonano (ze wzoru) symulację odpowiedzi skokowej (rys. \ref{fig:z2}).\\
 	Wzmocnienie statyczne:
 	\[K_{stat}=\lim_{z\rightarrow 1}G(z)=-3.7848\]
 	\begin{figure}[H]
@@ -96,7 +94,7 @@
 	
 	Gdzie $T=0.1$ oznacza okres próbkowania.
 	
-	Brak regulacji metodą Zieglera-Nicholsa. Dobrano nastawy (rys. ref{fig:z3}:
+	Brak regulacji metodą Zieglera-Nicholsa. Dobrano nastawy (rys. \ref{fig:z3}):
 	\[K = -0.1\]
 	\[T_i = -0.4\]
 	\[T_d = -0.05\]
@@ -165,11 +163,11 @@
 				
 				
 	\subsection{Testowanie odporności}
-	Przyjęto w/w przyjęte parametry regulacji. Dla zmniejszonego czasu odpowiedzi występują oscylacje wejścia i wyjścia modelu (rys. \ref{fig:z6_1}, rys.\ref{fig:z6_3}, rys.\ref{fig:z6_5}). Dla zwiększonego czasu odpowiedzi występują oscylację sygnału wejściowego i pogorszenie regulacji (rys. \ref{fig:z6_-1}, \ref{fig:z6_-3}, \ref{fig:z6_-10}). Dla opóźnień oraz małych przyspieszeń inercji obiektu udaje się uzyskać regulację.
+	Przyjęto w/w parametry regulacji. Dla zmniejszonego czasu odpowiedzi występują oscylacje wejścia i wyjścia modelu (rys. \ref{fig:z6_1}, rys.\ref{fig:z6_3}, rys.\ref{fig:z6_5}). Dla zwiększonego czasu odpowiedzi występują oscylację sygnału wejściowego i pogorszenie regulacji (rys. \ref{fig:z6_-1}, \ref{fig:z6_-3}, \ref{fig:z6_-10}). Dla opóźnień oraz małych przyspieszeń inercji obiektu udaje się uzyskać regulację.
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{z6_1}
-	\caption{Testowanie odporności dla  $y(k) = b_6u(k-5)+b_7u(k-6)-a_1y(k-1)-a_2y(k-2)=$.}
+	\caption{Testowanie odporności dla  $y(k) = b_6u(k-5)+b_7u(k-6)-a_1y(k-1)-a_2y(k-2)$.}
 	\label{fig:z6_1}
 	\end{figure}
 	
